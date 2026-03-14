@@ -7,318 +7,182 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f7f4f0;
-    --surface: #ffffff;
-    --surface2: #f0ede8;
-    --border: #ddd8d0;
-    --text: #1a1714;
-    --text-muted: #7a7268;
-    --accent: #1d4a8a;
-    --accent-light: #e8eef8;
-    --green: #1a6b45;
-    --green-light: #e6f4ee;
-    --amber: #915c0a;
-    --amber-light: #fef3e2;
-    --red: #8b1a1a;
-    --red-light: #fce8e8;
-    --radius: 12px;
-    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --bg: #f7f4f0; --surface: #ffffff; --surface2: #f0ede8;
+    --border: #ddd8d0; --text: #1a1714; --text-muted: #7a7268;
+    --accent: #1d4a8a; --accent-light: #e8eef8;
+    --green: #1a6b45; --green-light: #e6f4ee;
+    --amber: #915c0a; --amber-light: #fef3e2;
+    --red: #8b1a1a; --red-light: #fce8e8;
+    --purple: #5b2d8e; --purple-light: #f0eaf8;
+    --teal: #0d6b6b; --teal-light: #e6f5f5;
+    --radius: 12px; --shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 15px;
-    line-height: 1.6;
-  }
-  header {
-    background: var(--accent);
-    color: white;
-    padding: 20px 24px 18px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 16px rgba(29,74,138,0.25);
-  }
-  header .inner {
-    max-width: 860px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  header .logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 24px;
-    letter-spacing: 0.5px;
-  }
-  header .logo span {
-    opacity: 0.7;
-    font-size: 14px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 300;
-    margin-left: 8px;
-  }
-  header .ref {
-    margin-left: auto;
-    font-size: 11px;
-    opacity: 0.65;
-    text-align: right;
-    line-height: 1.4;
-  }
-  main {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 28px 16px 60px;
-  }
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; line-height: 1.6; }
 
-  /* Step Bar */
-  .steps-bar {
-    display: flex;
-    align-items: center;
-    margin-bottom: 28px;
-  }
-  .step-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-    cursor: pointer;
-    opacity: 0.4;
-    transition: opacity 0.2s;
-  }
+  header { background: var(--accent); color: white; padding: 18px 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(29,74,138,0.25); }
+  header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; }
+  header .logo { font-family: 'DM Serif Display', serif; font-size: 24px; }
+  header .logo span { opacity: 0.7; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; margin-left: 8px; }
+  header .ref { margin-left: auto; font-size: 11px; opacity: 0.6; text-align: right; line-height: 1.4; }
+
+  main { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* ── Step bar ── */
+  .steps-bar { display: flex; align-items: center; margin-bottom: 24px; overflow-x: auto; padding-bottom: 4px; }
+  .step-item { display: flex; align-items: center; gap: 7px; flex: 1; cursor: pointer; opacity: 0.38; transition: opacity 0.2s; min-width: 0; }
   .step-item.active { opacity: 1; }
-  .step-item.done   { opacity: 0.7; }
-  .step-num {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 2px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700;
-    color: var(--text-muted);
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
+  .step-item.done   { opacity: 0.65; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: var(--surface); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
   .step-item.active .step-num { background: var(--accent); border-color: var(--accent); color: white; }
   .step-item.done   .step-num { background: var(--green);  border-color: var(--green);  color: white; }
-  .step-label { font-size: 12px; font-weight: 500; white-space: nowrap; }
-  .step-connector { height: 2px; background: var(--border); flex: 0 0 20px; margin: 0 4px; }
+  .step-label { font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .step-connector { height: 2px; background: var(--border); flex: 0 0 14px; margin: 0 3px; }
 
-  /* Card */
-  .card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 28px;
-    margin-bottom: 20px;
-    border: 1px solid var(--border);
-  }
-  .card-title   { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-  .card-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+  /* ── Card ── */
+  .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 26px; margin-bottom: 18px; border: 1px solid var(--border); }
+  .card-title    { font-size: 18px; font-weight: 700; margin-bottom: 5px; }
+  .card-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
 
-  /* Warning */
-  .warn-box {
-    display: none;
-    background: #fff3cd;
-    border: 1.5px solid #ffc107;
-    border-radius: 8px;
-    padding: 10px 16px;
-    font-size: 13px;
-    color: #7d4e00;
-    font-weight: 500;
-    margin-top: 16px;
-    align-items: center;
-    gap: 8px;
-  }
+  /* ── Warning ── */
+  .warn-box { display: none; background: #fff3cd; border: 1.5px solid #ffc107; border-radius: 8px; padding: 10px 16px; font-size: 13px; color: #7d4e00; font-weight: 500; margin-top: 14px; align-items: center; gap: 8px; }
   .warn-box.show { display: flex; animation: shake 0.3s ease; }
-  @keyframes shake {
-    0%,100%{ transform:translateX(0); }
-    25%    { transform:translateX(-5px); }
-    75%    { transform:translateX(5px); }
-  }
+  @keyframes shake { 0%,100%{ transform:translateX(0); } 25%{ transform:translateX(-5px); } 75%{ transform:translateX(5px); } }
 
-  /* Seizure grid */
-  .options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-  }
-  .option-btn {
-    border: 2px solid var(--border);
-    background: var(--bg);
-    border-radius: 10px;
-    padding: 14px 16px;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.15s;
-    width: 100%;
-  }
-  .option-btn:hover   { border-color: var(--accent); background: var(--accent-light); }
+  /* ── Seizure grid ── */
+  .options-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 9px; }
+  .option-btn { border: 2px solid var(--border); background: var(--bg); border-radius: 10px; padding: 13px 15px; cursor: pointer; text-align: left; transition: all 0.15s; width: 100%; }
+  .option-btn:hover    { border-color: var(--accent); background: var(--accent-light); }
   .option-btn.selected { border-color: var(--accent); background: var(--accent-light); }
-  .opt-icon   { font-size: 22px; display: block; margin-bottom: 6px; }
-  .opt-label  { font-size: 13px; font-weight: 700; display: block; color: var(--text); line-height: 1.3; }
-  .opt-label-en { font-size: 10.5px; font-weight: 400; color: var(--text-muted); display: block; margin-top: 1px; }
-  .opt-desc   { font-size: 11px; color: var(--text-muted); margin-top: 5px; display: block; line-height: 1.4; }
+  .opt-icon    { font-size: 20px; display: block; margin-bottom: 5px; }
+  .opt-label   { font-size: 13px; font-weight: 700; display: block; color: var(--text); line-height: 1.3; }
+  .opt-label-en{ font-size: 10px; font-weight: 400; color: var(--text-muted); display: block; margin-top: 1px; }
+  .opt-desc    { font-size: 11px; color: var(--text-muted); margin-top: 4px; display: block; line-height: 1.4; }
   .option-btn.selected .opt-label    { color: var(--accent); }
   .option-btn.selected .opt-label-en { color: var(--accent); opacity: 0.75; }
 
-  /* Modifier grid — pure divs, no label/input */
-  .modifiers-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  @media(max-width:540px){
-    .modifiers-grid { grid-template-columns: 1fr; }
-    .options-grid   { grid-template-columns: 1fr 1fr; }
-  }
-  .mod-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 12px 14px;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    background: var(--bg);
-    transition: all 0.15s;
-    user-select: none;
-  }
+  /* ── Modifier grid ── */
+  .modifiers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media(max-width:520px){ .modifiers-grid { grid-template-columns: 1fr; } .options-grid { grid-template-columns: 1fr 1fr; } }
+  .mod-item { display: flex; align-items: flex-start; gap: 10px; padding: 11px 13px; border: 2px solid var(--border); border-radius: 10px; cursor: pointer; background: var(--bg); transition: all 0.15s; user-select: none; }
   .mod-item:hover   { border-color: var(--accent); background: var(--accent-light); }
   .mod-item.checked { border-color: var(--accent); background: var(--accent-light); }
-  .mod-chk {
-    width: 18px; height: 18px;
-    border-radius: 4px;
-    border: 2px solid var(--border);
-    flex-shrink: 0;
-    margin-top: 2px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px;
-    transition: all 0.15s;
-  }
-  .mod-item.checked .mod-chk {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-  }
+  .mod-chk { width: 17px; height: 17px; border-radius: 4px; border: 2px solid var(--border); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 10px; transition: all 0.15s; }
+  .mod-item.checked .mod-chk { background: var(--accent); border-color: var(--accent); color: white; }
+  .mod-chk.mod-radio { border-radius: 50%; }
   .mod-label { font-size: 13px; font-weight: 500; }
   .mod-sub   { font-size: 11px; color: var(--text-muted); }
 
-  /* Radio style for demographic group */
-  .mod-chk.mod-radio { border-radius: 50%; }
+  /* ── Section divider ── */
+  .section-divider { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin: 18px 0 9px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .divider-hint { font-size: 10px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--accent); background: var(--accent-light); border: 1px solid #c0d0e8; border-radius: 20px; padding: 1px 8px; margin-left: 6px; vertical-align: middle; }
 
-  /* Divider hint label */
-  .divider-hint {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0;
-    text-transform: none;
-    color: var(--accent);
-    background: var(--accent-light);
-    border: 1px solid #c0d0e8;
-    border-radius: 20px;
-    padding: 1px 8px;
-    margin-left: 6px;
-    vertical-align: middle;
-  }
-
-  /* Section divider */
-  .section-divider {
-    font-size: 12px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin: 20px 0 10px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* Buttons */
-  .nav-btns { display: flex; gap: 10px; justify-content: space-between; margin-top: 24px; }
-  .btn {
-    padding: 12px 24px; border-radius: 8px; border: none;
-    cursor: pointer; font-size: 14px; font-weight: 600; font-family: inherit;
-    transition: all 0.15s;
-  }
+  /* ── Buttons ── */
+  .nav-btns { display: flex; gap: 10px; justify-content: space-between; margin-top: 22px; }
+  .btn { padding: 11px 22px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px; font-weight: 600; font-family: inherit; transition: all 0.15s; }
   .btn-primary   { background: var(--accent); color: white; }
   .btn-primary:hover { background: #163c70; }
   .btn-secondary { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
   .btn-secondary:hover { background: var(--border); }
   .btn-reset     { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
 
-  /* Results */
-  .result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-  .result-icon { font-size: 32px; }
-  .result-info h2 { font-size: 20px; font-weight: 700; }
-  .result-info p  { font-size: 13px; color: var(--text-muted); }
+  /* ── Drug history (page 3) ── */
+  .drug-search-wrap { position: relative; margin-bottom: 12px; }
+  .drug-search-wrap input { width: 100%; padding: 10px 14px; border: 2px solid var(--border); border-radius: 9px; font-size: 14px; font-family: inherit; background: var(--bg); outline: none; transition: border-color 0.15s; }
+  .drug-search-wrap input:focus { border-color: var(--accent); background: white; }
+  .drug-dropdown { display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0; background: white; border: 2px solid var(--accent); border-radius: 9px; z-index: 50; max-height: 220px; overflow-y: auto; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+  .drug-dropdown.open { display: block; }
+  .drug-option { padding: 9px 14px; cursor: pointer; font-size: 13px; transition: background 0.1s; }
+  .drug-option:hover { background: var(--accent-light); }
+  .drug-option .dopt-en { font-weight: 600; }
+  .drug-option .dopt-ko { font-size: 11px; color: var(--text-muted); margin-left: 6px; }
 
-  .asm-group { margin-bottom: 20px; }
-  .asm-group-label { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .group-badge {
-    padding: 3px 10px; border-radius: 20px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
-  }
+  .history-section { margin-bottom: 18px; }
+  .history-label { font-size: 13px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .history-label .hl-badge { font-size: 10px; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+  .tried-badge  { background: #e8eef8; color: var(--accent); }
+  .failed-badge { background: var(--red-light); color: var(--red); }
+
+  .drug-chips { display: flex; flex-wrap: wrap; gap: 6px; min-height: 32px; }
+  .drug-chip { display: flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 1.5px solid; }
+  .chip-tried  { background: var(--accent-light); border-color: #b0c4e0; color: var(--accent); }
+  .chip-failed { background: var(--red-light);    border-color: #e0a0a0; color: var(--red); }
+  .chip-remove { cursor: pointer; opacity: 0.6; font-size: 13px; line-height: 1; margin-left: 2px; }
+  .chip-remove:hover { opacity: 1; }
+  .no-drug-hint { font-size: 12px; color: var(--text-muted); align-self: center; }
+
+  /* ── Results ── */
+  .result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .result-icon { font-size: 30px; }
+  .result-info h2 { font-size: 19px; font-weight: 700; }
+  .result-info p  { font-size: 12px; color: var(--text-muted); }
+
+  /* Strategy toggle */
+  .strategy-toggle { display: flex; gap: 0; border: 2px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 22px; }
+  .strat-btn { flex: 1; padding: 12px 10px; border: none; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; background: var(--bg); color: var(--text-muted); transition: all 0.15s; text-align: center; line-height: 1.3; }
+  .strat-btn:first-child { border-right: 1px solid var(--border); }
+  .strat-btn.active { color: white; }
+  .strat-btn.active.change  { background: var(--purple); }
+  .strat-btn.active.addon   { background: var(--teal); }
+  .strat-btn .strat-icon { font-size: 18px; display: block; margin-bottom: 3px; }
+  .strat-btn .strat-sub  { font-size: 10px; font-weight: 400; opacity: 0.85; display: block; }
+
+  /* Strategy panels */
+  .strat-panel { display: none; }
+  .strat-panel.active { display: block; animation: fadeIn 0.18s ease; }
+
+  /* Change panel */
+  .change-panel-note { background: var(--purple-light); border: 1px solid #c8b0e0; border-radius: 9px; padding: 12px 14px; font-size: 12px; color: var(--purple); margin-bottom: 16px; line-height: 1.6; }
+
+  /* Addon panel */
+  .addon-panel-note { background: var(--teal-light); border: 1px solid #9ed0d0; border-radius: 9px; padding: 12px 14px; font-size: 12px; color: var(--teal); margin-bottom: 16px; line-height: 1.6; }
+  .addon-combo { background: var(--bg); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 9px; }
+  .addon-combo-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .addon-rank { font-size: 10px; padding: 2px 8px; border-radius: 12px; font-weight: 700; }
+  .addon-rank-1 { background: var(--green-light); color: var(--green); }
+  .addon-rank-2 { background: var(--amber-light); color: var(--amber); }
+  .addon-rank-3 { background: var(--red-light);   color: var(--red); }
+  .addon-drugs  { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ASM groups (change panel) */
+  .asm-group { margin-bottom: 16px; }
+  .asm-group-label { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+  .group-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.03em; }
   .group-1 .group-badge { background: var(--green-light); color: var(--green); }
   .group-2 .group-badge { background: var(--amber-light); color: var(--amber); }
-  .group-3 .group-badge { background: var(--red-light);   color: var(--red);   }
-  .group-desc { font-size: 12px; color: var(--text-muted); }
+  .group-3 .group-badge { background: var(--red-light);   color: var(--red); }
+  .group-desc { font-size: 11.5px; color: var(--text-muted); }
 
-  .asm-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .asm-tag {
-    padding: 7px 13px; border-radius: 8px;
-    font-size: 13px; font-weight: 600;
-    border: 1.5px solid;
-    position: relative;
-    text-align: center; line-height: 1.4;
-  }
-  .asm-tag .drug-ko { display: block; font-size: 10.5px; font-weight: 400; opacity: 0.7; margin-top: 1px; }
+  .asm-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .asm-tag { padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; border: 1.5px solid; position: relative; text-align: center; line-height: 1.4; }
+  .asm-tag.excluded { opacity: 0.4; text-decoration: line-through; cursor: default; }
+  .asm-tag .drug-ko { display: block; font-size: 10px; font-weight: 400; opacity: 0.7; margin-top: 1px; }
   .group-1 .asm-tag { background: var(--green-light); border-color: #a8d5be; color: var(--green); }
   .group-2 .asm-tag { background: var(--amber-light); border-color: #f0c97a; color: var(--amber); }
-  .group-3 .asm-tag { background: var(--red-light);   border-color: #e8aaaa; color: var(--red);   }
-  .asm-tag.up::after {
-    content: '▲'; font-size: 9px;
-    position: absolute; top: -5px; right: -5px;
-    background: var(--green); color: white;
-    border-radius: 3px; padding: 1px 3px;
-  }
-  .asm-tag.down::after {
-    content: '▼'; font-size: 9px;
-    position: absolute; top: -5px; right: -5px;
-    background: var(--red); color: white;
-    border-radius: 3px; padding: 1px 3px;
-  }
+  .group-3 .asm-tag { background: var(--red-light);   border-color: #e8aaaa; color: var(--red); }
+  /* addon tag style */
+  .addon-tag { padding: 6px 11px; border-radius: 8px; font-size: 12px; font-weight: 600; border: 1.5px solid; text-align: center; line-height: 1.4; background: var(--teal-light); border-color: #9ed0d0; color: var(--teal); }
+  .addon-tag .drug-ko { display: block; font-size: 10px; font-weight: 400; opacity: 0.7; }
 
-  .modifier-notes {
-    background: var(--surface2); border-radius: 10px;
-    padding: 16px; margin-top: 20px; border: 1px solid var(--border);
-  }
-  .modifier-notes h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--text-muted); }
-  .mod-note-item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+  .asm-tag.up::after   { content:'▲'; font-size:9px; position:absolute; top:-5px; right:-5px; background:var(--green); color:white; border-radius:3px; padding:1px 3px; }
+  .asm-tag.down::after { content:'▼'; font-size:9px; position:absolute; top:-5px; right:-5px; background:var(--red);   color:white; border-radius:3px; padding:1px 3px; }
+
+  /* Notes & misc */
+  .modifier-notes { background: var(--surface2); border-radius: 10px; padding: 14px; margin-top: 16px; border: 1px solid var(--border); }
+  .modifier-notes h4 { font-size: 12.5px; font-weight: 700; margin-bottom: 9px; color: var(--text-muted); }
+  .mod-note-item { display: flex; gap: 8px; margin-bottom: 5px; font-size: 12px; line-height: 1.5; }
   .mod-note-item .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:5px; }
 
-  .summary-bar {
-    background: var(--accent-light); border: 1px solid #c0d0e8;
-    border-radius: 10px; padding: 12px 16px; margin-bottom: 20px;
-    font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-  }
-  .summary-tag {
-    background: white; border: 1px solid #c0d0e8; border-radius: 6px;
-    padding: 2px 8px; font-size: 12px; color: var(--accent); font-weight: 500;
-  }
-  .disclaimer {
-    background: #fff8e6; border: 1px solid #f0c97a; border-radius: 10px;
-    padding: 14px 16px; font-size: 12px; color: #6b4a00; margin-top: 20px; line-height: 1.6;
-  }
+  .summary-bar { background: var(--accent-light); border: 1px solid #c0d0e8; border-radius: 10px; padding: 11px 14px; margin-bottom: 18px; font-size: 13px; display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+  .summary-tag { background: white; border: 1px solid #c0d0e8; border-radius: 6px; padding: 2px 8px; font-size: 11.5px; color: var(--accent); font-weight: 500; }
+  .summary-tag.failed-tag { background: var(--red-light); border-color: #e0a0a0; color: var(--red); }
+
+  .disclaimer { background: #fff8e6; border: 1px solid #f0c97a; border-radius: 10px; padding: 13px 15px; font-size: 12px; color: #6b4a00; margin-top: 18px; line-height: 1.6; }
   .disclaimer strong { display: block; margin-bottom: 4px; }
 
   .page { display: none; }
   .page.active { display: block; animation: fadeIn 0.2s ease; }
-  @keyframes fadeIn {
-    from { opacity:0; transform:translateY(8px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 </style>
 </head>
 <body>
@@ -341,68 +205,63 @@
       <div class="step-num">2</div><div class="step-label">환자 특성</div>
     </div>
     <div class="step-connector"></div>
-    <div class="step-item" id="si-3">
-      <div class="step-num">3</div><div class="step-label">결과</div>
+    <div class="step-item" id="si-3" onclick="goToStep(3)">
+      <div class="step-num">3</div><div class="step-label">약물 치료력</div>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step-item" id="si-4">
+      <div class="step-num">4</div><div class="step-label">결과</div>
     </div>
   </div>
 
-  <!-- PAGE 1 -->
+  <!-- ═══════════════ PAGE 1 : 발작 유형 ═══════════════ -->
   <div class="page active" id="page-1">
     <div class="card">
       <div class="card-title">발작 유형을 선택하세요</div>
       <div class="card-subtitle">가장 주된 발작 유형을 하나 선택하세요</div>
       <div class="options-grid">
         <button class="option-btn" onclick="selectSeizure('focal')" id="sz-focal">
-          <span class="opt-icon">⚡</span>
-          <span class="opt-label">국소 발작</span>
+          <span class="opt-icon">⚡</span><span class="opt-label">국소 발작</span>
           <span class="opt-label-en">Focal seizures</span>
           <span class="opt-desc">의식 유지 또는 소실 동반</span>
         </button>
         <button class="option-btn" onclick="selectSeizure('focal_bilateral')" id="sz-focal_bilateral">
-          <span class="opt-icon">⚡⚡</span>
-          <span class="opt-label">국소→양측 강직간대</span>
+          <span class="opt-icon">⚡⚡</span><span class="opt-label">국소→양측 강직간대</span>
           <span class="opt-label-en">Focal to bilateral tonic-clonic</span>
           <span class="opt-desc">국소 시작 후 이차 전신화</span>
         </button>
         <button class="option-btn" onclick="selectSeizure('generalized_tonic_clonic')" id="sz-generalized_tonic_clonic">
-          <span class="opt-icon">🌊</span>
-          <span class="opt-label">전신 강직간대</span>
+          <span class="opt-icon">🌊</span><span class="opt-label">전신 강직간대</span>
           <span class="opt-label-en">Generalized tonic-clonic (GTCS)</span>
           <span class="opt-desc">일차성 전신화</span>
         </button>
         <button class="option-btn" onclick="selectSeizure('absence')" id="sz-absence">
-          <span class="opt-icon">💭</span>
-          <span class="opt-label">결신 발작</span>
+          <span class="opt-icon">💭</span><span class="opt-label">결신 발작</span>
           <span class="opt-label-en">Absence seizures</span>
           <span class="opt-desc">소아/청소년 결신 포함</span>
         </button>
         <button class="option-btn" onclick="selectSeizure('myoclonic')" id="sz-myoclonic">
-          <span class="opt-icon">💥</span>
-          <span class="opt-label">근간대 발작</span>
+          <span class="opt-icon">💥</span><span class="opt-label">근간대 발작</span>
           <span class="opt-label-en">Myoclonic seizures</span>
           <span class="opt-desc">청소년 근간대 뇌전증 등</span>
         </button>
         <button class="option-btn" onclick="selectSeizure('absence_myoclonic')" id="sz-absence_myoclonic">
-          <span class="opt-icon">💭💥</span>
-          <span class="opt-label">결신 + 근간대</span>
+          <span class="opt-icon">💭💥</span><span class="opt-label">결신 + 근간대</span>
           <span class="opt-label-en">Absence + myoclonic</span>
           <span class="opt-desc">두 유형이 공존하는 경우</span>
         </button>
         <button class="option-btn" onclick="selectSeizure('atonic_tonic')" id="sz-atonic_tonic">
-          <span class="opt-icon">🔽</span>
-          <span class="opt-label">무긴장 / 강직 발작</span>
+          <span class="opt-icon">🔽</span><span class="opt-label">무긴장 / 강직 발작</span>
           <span class="opt-label-en">Atonic / tonic seizures</span>
           <span class="opt-desc">낙상 발작, Lennox-Gastaut 포함</span>
         </button>
         <button class="option-btn" onclick="selectSeizure('mixed_generalized')" id="sz-mixed_generalized">
-          <span class="opt-icon">🔀</span>
-          <span class="opt-label">혼합 전신 발작</span>
+          <span class="opt-icon">🔀</span><span class="opt-label">혼합 전신 발작</span>
           <span class="opt-label-en">Mixed generalized seizures</span>
           <span class="opt-desc">GTCS + 결신 또는 GTCS + 근간대</span>
         </button>
         <button class="option-btn" onclick="selectSeizure('spasms')" id="sz-spasms">
-          <span class="opt-icon">👶</span>
-          <span class="opt-label">연축</span>
+          <span class="opt-icon">👶</span><span class="opt-label">연축</span>
           <span class="opt-label-en">Epileptic spasms (West)</span>
           <span class="opt-desc">영아 연축 (West 증후군)</span>
         </button>
@@ -415,13 +274,13 @@
     </div>
   </div>
 
-  <!-- PAGE 2 -->
+  <!-- ═══════════════ PAGE 2 : 환자 특성 ═══════════════ -->
   <div class="page" id="page-2">
     <div class="card">
       <div class="card-title">환자 특성 입력</div>
-      <div class="card-subtitle">해당되는 항목을 모두 선택하세요. 없으면 바로 결과를 확인할 수 있습니다.</div>
+      <div class="card-subtitle">해당되는 항목을 모두 선택하세요. 없으면 바로 다음 단계로 넘어갑니다.</div>
 
-      <div class="section-divider">👤 인구학적 특성 <span class="divider-hint">(한 가지만 선택 가능)</span></div>
+      <div class="section-divider">👤 인구학적 특성 <span class="divider-hint">한 가지만 선택 가능</span></div>
       <div class="modifiers-grid">
         <div class="mod-item" id="mod-child"      onclick="selectDemog('child')">
           <div class="mod-chk mod-radio" id="chk-child"></div>
@@ -499,55 +358,119 @@
 
       <div class="nav-btns">
         <button class="btn btn-secondary" onclick="prevStep()">← 이전</button>
+        <button class="btn btn-primary"   onclick="nextStep()">다음 단계 →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE 3 : 약물 치료력 ═══════════════ -->
+  <div class="page" id="page-3">
+    <div class="card">
+      <div class="card-title">과거 약물 치료력</div>
+      <div class="card-subtitle">이전에 사용해 본 항경련제를 입력하세요. 없으면 바로 결과를 확인할 수 있습니다.</div>
+
+      <!-- Tried drugs -->
+      <div class="history-section">
+        <div class="history-label">
+          <span>✅ 사용해 본 약물</span>
+          <span class="hl-badge tried-badge">Previously tried</span>
+        </div>
+        <div class="drug-search-wrap">
+          <input type="text" id="search-tried" placeholder="약물명 검색 (예: Levetiracetam, 레비티라세탐)…" oninput="filterDrugs('tried')" onblur="closeDropdown('tried')" autocomplete="off">
+          <div class="drug-dropdown" id="dd-tried"></div>
+        </div>
+        <div class="drug-chips" id="chips-tried">
+          <span class="no-drug-hint" id="hint-tried">아직 입력된 약물이 없습니다</span>
+        </div>
+      </div>
+
+      <!-- Failed drugs -->
+      <div class="history-section" style="margin-top:22px">
+        <div class="history-label">
+          <span>❌ 효과 없었거나 중단한 약물</span>
+          <span class="hl-badge failed-badge">Failed / discontinued</span>
+        </div>
+        <div class="drug-search-wrap">
+          <input type="text" id="search-failed" placeholder="약물명 검색 (예: Carbamazepine, 카르바마제핀)…" oninput="filterDrugs('failed')" onblur="closeDropdown('failed')" autocomplete="off">
+          <div class="drug-dropdown" id="dd-failed"></div>
+        </div>
+        <div class="drug-chips" id="chips-failed">
+          <span class="no-drug-hint" id="hint-failed">아직 입력된 약물이 없습니다</span>
+        </div>
+      </div>
+
+      <div style="margin-top:18px; padding:12px 14px; background:var(--surface2); border-radius:9px; font-size:12px; color:var(--text-muted); line-height:1.6;">
+        💡 <strong>사용해 본 약물</strong>은 결과에서 표시만 되고, <strong>효과 없었거나 중단한 약물</strong>은 추천 목록에서 제외됩니다.
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-secondary" onclick="prevStep()">← 이전</button>
         <button class="btn btn-primary"   onclick="showResults()">결과 보기 →</button>
       </div>
     </div>
   </div>
 
-  <!-- PAGE 3 -->
-  <div class="page" id="page-3">
+  <!-- ═══════════════ PAGE 4 : 결과 ═══════════════ -->
+  <div class="page" id="page-4">
     <div class="card">
       <div class="result-header">
         <div class="result-icon">💊</div>
         <div class="result-info">
           <h2>항경련제 추천 결과</h2>
-          <p id="result-desc">발작 유형 및 환자 특성 기반 맞춤 추천</p>
+          <p id="result-desc"></p>
         </div>
       </div>
+
       <div id="summary-bar" class="summary-bar"></div>
 
-      <div class="asm-group group-1">
-        <div class="asm-group-label">
-          <span class="group-badge">1군 (우선)</span>
-          <span class="group-desc">효능·내약성 근거가 가장 충분한 약물</span>
-        </div>
-        <div class="asm-tags" id="g1-tags"></div>
+      <!-- Strategy toggle -->
+      <div class="strategy-toggle">
+        <button class="strat-btn change active" id="btn-change" onclick="showStrategy('change')">
+          <span class="strat-icon">🔄</span>
+          약물 교체 (Change)
+          <span class="strat-sub">현재 약을 다른 약으로 바꾸기</span>
+        </button>
+        <button class="strat-btn addon" id="btn-addon" onclick="showStrategy('addon')">
+          <span class="strat-icon">➕</span>
+          병용 추가 (Add-on)
+          <span class="strat-sub">현재 약에 다른 약을 추가하기</span>
+        </button>
       </div>
-      <div class="asm-group group-2" style="margin-top:16px">
-        <div class="asm-group-label">
-          <span class="group-badge">2군 (2차)</span>
-          <span class="group-desc">1군 실패 시 또는 특성에 따라 동등 고려</span>
+
+      <!-- CHANGE panel -->
+      <div class="strat-panel active" id="panel-change">
+        <div class="change-panel-note" id="change-note"></div>
+        <div class="asm-group group-1">
+          <div class="asm-group-label"><span class="group-badge">1군 (우선)</span><span class="group-desc">효능·내약성 근거가 가장 충분한 약물</span></div>
+          <div class="asm-tags" id="g1-tags"></div>
         </div>
-        <div class="asm-tags" id="g2-tags"></div>
+        <div class="asm-group group-2" style="margin-top:14px">
+          <div class="asm-group-label"><span class="group-badge">2군 (2차)</span><span class="group-desc">1군 실패 시 또는 특성에 따라 동등 고려</span></div>
+          <div class="asm-tags" id="g2-tags"></div>
+        </div>
+        <div class="asm-group group-3" style="margin-top:14px">
+          <div class="asm-group-label"><span class="group-badge">3군 (3차)</span><span class="group-desc">특수 상황 또는 다제 불응 시 고려</span></div>
+          <div class="asm-tags" id="g3-tags"></div>
+        </div>
       </div>
-      <div class="asm-group group-3" style="margin-top:16px">
-        <div class="asm-group-label">
-          <span class="group-badge">3군 (3차)</span>
-          <span class="group-desc">특수 상황 또는 다제 불응 시 고려</span>
-        </div>
-        <div class="asm-tags" id="g3-tags"></div>
+
+      <!-- ADD-ON panel -->
+      <div class="strat-panel" id="panel-addon">
+        <div class="addon-panel-note" id="addon-note"></div>
+        <div id="addon-combos"></div>
       </div>
 
       <div id="mod-notes" class="modifier-notes" style="display:none">
         <h4>⚙️ 수정인자에 의한 조정 사항</h4>
         <div id="notes-list"></div>
       </div>
+
       <div class="disclaimer">
         <strong>⚠️ 주의사항</strong>
         본 결과는 Asadi-Pooya et al. (Epilepsia, 2020) 알고리즘에 기반한 참고 정보입니다. 최종 처방 결정은 반드시 담당 의료전문가가 개별 환자의 임상 상황을 종합적으로 판단하여 내려야 합니다.
       </div>
       <div class="nav-btns">
-        <button class="btn btn-secondary" onclick="prevStep()">← 특성 수정</button>
+        <button class="btn btn-secondary" onclick="prevStep()">← 치료력 수정</button>
         <button class="btn btn-reset"     onclick="resetAll()">🔄 처음부터</button>
       </div>
     </div>
@@ -555,7 +478,9 @@
 </main>
 
 <script>
-/* ── Drug dictionary (English key → Korean name) ── */
+/* ════════════════════════════════════════
+   DRUG DICTIONARY
+════════════════════════════════════════ */
 const DRUG_KO = {
   'Levetiracetam':'레비티라세탐','Lamotrigine':'라모트리진',
   'Oxcarbazepine':'옥스카르바제핀','Carbamazepine':'카르바마제핀',
@@ -570,39 +495,69 @@ const DRUG_KO = {
   'Clobazam':'클로바잠','Rufinamide':'루피나마이드',
   'Vigabatrin':'비가바트린','ACTH':'ACTH',
   'Nitrazepam':'니트라제팜','Pyridoxine':'피리독신',
+  'Cenobamate':'세노바메이트','Cannabidiol':'칸나비디올',
 };
+const ALL_DRUGS = Object.keys(DRUG_KO);
 
-/* ── ASM groups per seizure type (English keys) ── */
+/* ════════════════════════════════════════
+   ASM GROUPS
+════════════════════════════════════════ */
 const ASM = {
-  focal:                  { g1:['Levetiracetam','Lamotrigine','Oxcarbazepine','Carbamazepine'],         g2:['Valproate','Lacosamide','Eslicarbazepine','Perampanel'],       g3:['Phenobarbital','Phenytoin','Topiramate','Zonisamide','Gabapentin','Pregabalin'] },
-  focal_bilateral:        { g1:['Levetiracetam','Lamotrigine','Oxcarbazepine','Carbamazepine'],         g2:['Valproate','Lacosamide','Eslicarbazepine','Perampanel'],       g3:['Phenobarbital','Phenytoin','Topiramate','Zonisamide'] },
-  generalized_tonic_clonic:{ g1:['Valproate','Levetiracetam','Lamotrigine'],                           g2:['Topiramate','Perampanel','Zonisamide'],                        g3:['Phenobarbital','Phenytoin','Felbamate'] },
-  absence:                { g1:['Ethosuximide','Valproate','Lamotrigine'],                              g2:['Levetiracetam','Zonisamide','Clonazepam'],                     g3:['Topiramate','Acetazolamide'] },
-  myoclonic:              { g1:['Valproate','Levetiracetam'],                                           g2:['Lamotrigine','Clonazepam','Piracetam'],                        g3:['Topiramate','Zonisamide','Perampanel','Brivaracetam'] },
-  absence_myoclonic:      { g1:['Valproate','Levetiracetam'],                                           g2:['Lamotrigine','Clonazepam'],                                    g3:['Topiramate','Zonisamide'] },
-  atonic_tonic:           { g1:['Valproate','Rufinamide'],                                              g2:['Lamotrigine','Levetiracetam','Topiramate'],                    g3:['Phenobarbital','Felbamate','Clonazepam','Clobazam'] },
-  mixed_generalized:      { g1:['Valproate'],                                                           g2:['Levetiracetam','Lamotrigine','Topiramate'],                    g3:['Perampanel','Phenobarbital','Clonazepam'] },
-  spasms:                 { g1:['Vigabatrin','ACTH'],                                                   g2:['Clonazepam','Nitrazepam','Valproate'],                         g3:['Topiramate','Zonisamide','Pyridoxine'] },
+  focal:                   { g1:['Levetiracetam','Lamotrigine','Oxcarbazepine','Carbamazepine'],   g2:['Valproate','Lacosamide','Eslicarbazepine','Perampanel'],  g3:['Phenobarbital','Phenytoin','Topiramate','Zonisamide','Gabapentin','Pregabalin'] },
+  focal_bilateral:         { g1:['Levetiracetam','Lamotrigine','Oxcarbazepine','Carbamazepine'],   g2:['Valproate','Lacosamide','Eslicarbazepine','Perampanel'],  g3:['Phenobarbital','Phenytoin','Topiramate','Zonisamide'] },
+  generalized_tonic_clonic:{ g1:['Valproate','Levetiracetam','Lamotrigine'],                       g2:['Topiramate','Perampanel','Zonisamide'],                   g3:['Phenobarbital','Phenytoin','Felbamate'] },
+  absence:                 { g1:['Ethosuximide','Valproate','Lamotrigine'],                        g2:['Levetiracetam','Zonisamide','Clonazepam'],               g3:['Topiramate','Acetazolamide'] },
+  myoclonic:               { g1:['Valproate','Levetiracetam'],                                     g2:['Lamotrigine','Clonazepam','Piracetam'],                  g3:['Topiramate','Zonisamide','Perampanel','Brivaracetam'] },
+  absence_myoclonic:       { g1:['Valproate','Levetiracetam'],                                     g2:['Lamotrigine','Clonazepam'],                              g3:['Topiramate','Zonisamide'] },
+  atonic_tonic:            { g1:['Valproate','Rufinamide'],                                        g2:['Lamotrigine','Levetiracetam','Topiramate'],              g3:['Phenobarbital','Felbamate','Clonazepam','Clobazam'] },
+  mixed_generalized:       { g1:['Valproate'],                                                     g2:['Levetiracetam','Lamotrigine','Topiramate'],              g3:['Perampanel','Phenobarbital','Clonazepam'] },
+  spasms:                  { g1:['Vigabatrin','ACTH'],                                             g2:['Clonazepam','Nitrazepam','Valproate'],                   g3:['Topiramate','Zonisamide','Pyridoxine'] },
 };
 
-/* ── Modifier rules ── */
+/* Add-on evidence pairs: [baseDrug, addonDrug, evidence level] */
+const ADDON_PAIRS = {
+  focal:                   [
+    ['Levetiracetam',  'Lamotrigine',    1], ['Levetiracetam', 'Lacosamide',    1],
+    ['Carbamazepine',  'Lamotrigine',    1], ['Carbamazepine', 'Levetiracetam', 1],
+    ['Lamotrigine',    'Valproate',      1], ['any',           'Perampanel',    2],
+    ['any',            'Lacosamide',     2], ['any',           'Zonisamide',    2],
+    ['any',            'Clobazam',       3],
+  ],
+  generalized_tonic_clonic:[
+    ['Valproate',      'Lamotrigine',    1], ['Valproate',     'Levetiracetam', 1],
+    ['any',            'Perampanel',     2], ['any',           'Topiramate',    2],
+    ['any',            'Clobazam',       3],
+  ],
+  absence:                 [
+    ['Ethosuximide',   'Lamotrigine',    2], ['Valproate',     'Lamotrigine',   2],
+    ['any',            'Levetiracetam',  3], ['any',           'Clonazepam',    3],
+  ],
+  myoclonic:               [
+    ['Valproate',      'Levetiracetam',  1], ['Valproate',     'Clonazepam',    2],
+    ['any',            'Perampanel',     2], ['any',           'Topiramate',    3],
+  ],
+};
+
+/* ════════════════════════════════════════
+   MODIFIER RULES
+════════════════════════════════════════ */
 const RULES = {
-  female_cbp:   { avoid:['Valproate'],                                                             prefer:['Lamotrigine','Levetiracetam'], note:'가임기 여성: Valproate는 기형 위험으로 회피 권고. Lamotrigine·Levetiracetam 선호.' },
-  pregnant:     { avoid:['Valproate','Phenobarbital','Phenytoin','Topiramate'],                    prefer:['Lamotrigine','Levetiracetam'], note:'임신: 고용량 엽산 권고. Valproate·Phenobarbital·Phenytoin·Topiramate 회피.' },
-  depression:   { avoid:['Levetiracetam','Perampanel'],                                           prefer:['Lamotrigine'],                 note:'우울증/불안: Levetiracetam·Perampanel 기분 부작용 주의. Lamotrigine 기분 안정 효과.' },
-  migraine:     {                                                                                  prefer:['Valproate','Topiramate'],      note:'편두통: Valproate·Topiramate는 편두통 예방 효과 겸비.' },
-  obesity:      { avoid:['Valproate','Carbamazepine','Pregabalin','Gabapentin'],                  prefer:['Topiramate','Zonisamide'],      note:'비만: Valproate·Carbamazepine·Pregabalin·Gabapentin 체중 증가. Topiramate·Zonisamide 체중 감소.' },
-  renal:        { avoid:['Gabapentin','Pregabalin','Levetiracetam'],                                                                       note:'신부전: Gabapentin·Pregabalin·Levetiracetam 용량 감량 또는 회피.' },
-  liver:        { avoid:['Valproate','Carbamazepine','Phenobarbital','Phenytoin'],                 prefer:['Levetiracetam'],               note:'간질환: 간 대사 약물(Valproate, Carbamazepine 등) 회피. Levetiracetam 선호.' },
-  cardiac:      { avoid:['Carbamazepine','Oxcarbazepine','Eslicarbazepine','Lacosamide'],                                                  note:'심장질환: Na⁺ 채널 차단제(Carbamazepine 등) 심전도 이상 주의.' },
-  osteoporosis: { avoid:['Carbamazepine','Phenobarbital','Phenytoin','Valproate'],                 prefer:['Levetiracetam','Lamotrigine'], note:'골다공증: 효소 유도 약물 골밀도 감소. Levetiracetam·Lamotrigine 선호.' },
-  tumor:        { avoid:['Carbamazepine','Phenobarbital','Phenytoin','Oxcarbazepine'],             prefer:['Levetiracetam','Lamotrigine','Valproate'], note:'뇌종양: 효소 유도 약물 항암제 효능 감소. Levetiracetam·Lamotrigine·Valproate 선호.' },
-  polypharmacy: { avoid:['Carbamazepine','Phenobarbital','Phenytoin','Oxcarbazepine'],             prefer:['Levetiracetam'],               note:'다중 약물: 효소 유도 약물 상호작용 위험. Levetiracetam 선호.' },
-  ocp:          { avoid:['Carbamazepine','Phenobarbital','Phenytoin','Oxcarbazepine','Topiramate'],prefer:['Levetiracetam'],               note:'경구피임약: 효소 유도 약물·Topiramate 피임 효능 감소. Levetiracetam 선호.' },
-  anticoagulant:{ avoid:['Carbamazepine','Phenobarbital','Phenytoin'],                                                                     note:'항응고제: 효소 유도 약물 항응고제 대사 증가로 혈전 위험 상승.' },
-  elderly:      { avoid:['Carbamazepine','Phenobarbital','Phenytoin'],                             prefer:['Lamotrigine','Levetiracetam'], note:'고령자: 효소 유도·진정제 부작용 위험. Lamotrigine·Levetiracetam 선호. 저용량 시작.' },
-  child:        {                                                                                                                           note:'소아: 연령별 적응증 확인 필수. Ethosuximide(결신), Levetiracetam, Carbamazepine 사용 가능. Vigabatrin은 영아 연축 특화.' },
-  cognitive:    { avoid:['Topiramate','Phenobarbital','Phenytoin'],                                prefer:['Levetiracetam','Lamotrigine'], note:'인지 저하: Topiramate·Phenobarbital 인지 영향 큼. Levetiracetam·Lamotrigine 선호.' },
+  female_cbp:   { avoid:['Valproate'],                                                              prefer:['Lamotrigine','Levetiracetam'],            note:'가임기 여성: Valproate 기형 위험으로 회피. Lamotrigine·Levetiracetam 선호.' },
+  pregnant:     { avoid:['Valproate','Phenobarbital','Phenytoin','Topiramate'],                     prefer:['Lamotrigine','Levetiracetam'],            note:'임신: 고용량 엽산 권고. Valproate·Phenobarbital·Phenytoin·Topiramate 회피.' },
+  depression:   { avoid:['Levetiracetam','Perampanel'],                                            prefer:['Lamotrigine'],                            note:'우울증/불안: Levetiracetam·Perampanel 기분 부작용 주의. Lamotrigine 기분 안정 효과.' },
+  migraine:     {                                                                                   prefer:['Valproate','Topiramate'],                 note:'편두통: Valproate·Topiramate 편두통 예방 효과 겸비.' },
+  obesity:      { avoid:['Valproate','Carbamazepine','Pregabalin','Gabapentin'],                   prefer:['Topiramate','Zonisamide'],                note:'비만: Valproate·Carbamazepine·Pregabalin·Gabapentin 체중 증가. Topiramate·Zonisamide 체중 감소.' },
+  renal:        { avoid:['Gabapentin','Pregabalin','Levetiracetam'],                                                                                  note:'신부전: Gabapentin·Pregabalin·Levetiracetam 용량 감량 또는 회피.' },
+  liver:        { avoid:['Valproate','Carbamazepine','Phenobarbital','Phenytoin'],                  prefer:['Levetiracetam'],                          note:'간질환: 간 대사 약물(Valproate, Carbamazepine 등) 회피. Levetiracetam 선호.' },
+  cardiac:      { avoid:['Carbamazepine','Oxcarbazepine','Eslicarbazepine','Lacosamide'],                                                             note:'심장질환: Na⁺ 채널 차단제(Carbamazepine 등) 심전도 이상 주의.' },
+  osteoporosis: { avoid:['Carbamazepine','Phenobarbital','Phenytoin','Valproate'],                  prefer:['Levetiracetam','Lamotrigine'],            note:'골다공증: 효소 유도 약물 골밀도 감소. Levetiracetam·Lamotrigine 선호.' },
+  tumor:        { avoid:['Carbamazepine','Phenobarbital','Phenytoin','Oxcarbazepine'],              prefer:['Levetiracetam','Lamotrigine','Valproate'],note:'뇌종양: 효소 유도 약물 항암제 효능 감소. Levetiracetam·Lamotrigine·Valproate 선호.' },
+  polypharmacy: { avoid:['Carbamazepine','Phenobarbital','Phenytoin','Oxcarbazepine'],              prefer:['Levetiracetam'],                          note:'다중 약물: 효소 유도 약물 상호작용 위험. Levetiracetam 선호.' },
+  ocp:          { avoid:['Carbamazepine','Phenobarbital','Phenytoin','Oxcarbazepine','Topiramate'], prefer:['Levetiracetam'],                          note:'경구피임약: 효소 유도 약물·Topiramate 피임 효능 감소. Levetiracetam 선호.' },
+  anticoagulant:{ avoid:['Carbamazepine','Phenobarbital','Phenytoin'],                                                                                note:'항응고제: 효소 유도 약물 항응고제 대사 증가로 혈전 위험 상승.' },
+  elderly:      { avoid:['Carbamazepine','Phenobarbital','Phenytoin'],                             prefer:['Lamotrigine','Levetiracetam'],            note:'고령자: 효소 유도·진정제 부작용 위험. Lamotrigine·Levetiracetam 선호. 저용량 시작.' },
+  child:        {                                                                                                                                     note:'소아: 연령별 적응증 확인 필수. Ethosuximide(결신), Levetiracetam, Carbamazepine 사용 가능.' },
+  cognitive:    { avoid:['Topiramate','Phenobarbital','Phenytoin'],                                prefer:['Levetiracetam','Lamotrigine'],            note:'인지 저하: Topiramate·Phenobarbital 인지 영향 큼. Levetiracetam·Lamotrigine 선호.' },
 };
 
 const SZ_NAMES = {
@@ -618,15 +573,23 @@ const MOD_NAMES = {
   polypharmacy:'다중 약물', ocp:'경구피임약', anticoagulant:'항응고제', cognitive:'인지 저하',
 };
 
-/* ── State ── */
-let selSz   = null;
-let selMods = new Set();
-let curStep = 1;
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
+let selSz      = null;
+let selMods    = new Set();
+let triedDrugs = new Set();   // tried but may have worked
+let failedDrugs= new Set();   // failed / discontinued
+let curStep    = 1;
+let curStrategy= 'change';
 
-/* ── Navigation ── */
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
 function goToStep(n) {
   if (n === 1) showPage(1);
   else if (n === 2 && selSz) showPage(2);
+  else if (n === 3 && selSz) showPage(3);
 }
 function showPage(n) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -636,7 +599,7 @@ function showPage(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function updateSteps() {
-  [1,2,3].forEach(i => {
+  [1,2,3,4].forEach(i => {
     const el = document.getElementById('si-' + i);
     if (!el) return;
     el.classList.remove('active','done');
@@ -645,33 +608,43 @@ function updateSteps() {
   });
 }
 function nextStep() {
-  if (!selSz) { flashWarn('warn-1'); return; }
-  showPage(2);
+  if (curStep === 1) {
+    if (!selSz) { flashWarn('warn-1'); return; }
+    showPage(2);
+  } else if (curStep === 2) {
+    showPage(3);
+  }
 }
 function prevStep() {
   if (curStep === 2) showPage(1);
   else if (curStep === 3) showPage(2);
+  else if (curStep === 4) showPage(3);
 }
 function flashWarn(id) {
   const el = document.getElementById(id);
-  el.classList.remove('show');
-  void el.offsetWidth; // reflow to restart animation
+  el.classList.remove('show'); void el.offsetWidth;
   el.classList.add('show');
   setTimeout(() => el.classList.remove('show'), 3000);
 }
 function resetAll() {
-  selSz = null; selMods.clear();
+  selSz = null; selMods.clear(); triedDrugs.clear(); failedDrugs.clear();
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
   document.querySelectorAll('.mod-item').forEach(item => {
     item.classList.remove('checked');
     const chk = item.querySelector('.mod-chk');
-    chk.textContent = '';
-    chk.style.cssText = '';
+    chk.textContent = ''; chk.style.cssText = '';
+  });
+  ['tried','failed'].forEach(t => {
+    document.getElementById('chips-' + t).innerHTML =
+      `<span class="no-drug-hint" id="hint-${t}">아직 입력된 약물이 없습니다</span>`;
+    document.getElementById('search-' + t).value = '';
   });
   showPage(1);
 }
 
-/* ── Seizure selection ── */
+/* ════════════════════════════════════════
+   SEIZURE SELECTION
+════════════════════════════════════════ */
 function selectSeizure(type) {
   selSz = type;
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
@@ -679,48 +652,99 @@ function selectSeizure(type) {
   document.getElementById('warn-1').classList.remove('show');
 }
 
-/* ── Demographic single-select ── */
+/* ════════════════════════════════════════
+   MODIFIER TOGGLE
+════════════════════════════════════════ */
 const DEMOG_KEYS = ['child','elderly','female_cbp','pregnant'];
-
 function selectDemog(key) {
-  // Deselect all other demog options first
   DEMOG_KEYS.forEach(k => {
     if (k === key) return;
     selMods.delete(k);
-    const item = document.getElementById('mod-' + k);
-    const chk  = document.getElementById('chk-' + k);
-    item.classList.remove('checked');
-    chk.textContent = '';
-    chk.style.cssText = '';
+    document.getElementById('mod-' + k).classList.remove('checked');
+    const c = document.getElementById('chk-' + k); c.textContent = ''; c.style.cssText = '';
   });
-  // Toggle the clicked one
   toggleMod(key);
 }
-
-/* ── Modifier toggle ── */
 function toggleMod(key) {
   const item = document.getElementById('mod-' + key);
   const chk  = document.getElementById('chk-' + key);
   if (selMods.has(key)) {
-    selMods.delete(key);
-    item.classList.remove('checked');
-    chk.textContent = '';
-    chk.style.cssText = '';
+    selMods.delete(key); item.classList.remove('checked');
+    chk.textContent = ''; chk.style.cssText = '';
   } else {
-    selMods.add(key);
-    item.classList.add('checked');
+    selMods.add(key); item.classList.add('checked');
     chk.textContent = '✓';
-    chk.style.background  = 'var(--accent)';
-    chk.style.borderColor = 'var(--accent)';
-    chk.style.color       = 'white';
+    chk.style.background = 'var(--accent)'; chk.style.borderColor = 'var(--accent)'; chk.style.color = 'white';
   }
 }
 
-/* ── Results ── */
+/* ════════════════════════════════════════
+   DRUG SEARCH (page 3)
+════════════════════════════════════════ */
+function filterDrugs(type) {
+  const query = document.getElementById('search-' + type).value.trim().toLowerCase();
+  const dd = document.getElementById('dd-' + type);
+  if (!query) { dd.classList.remove('open'); return; }
+
+  const matches = ALL_DRUGS.filter(d => {
+    const ko = DRUG_KO[d] || '';
+    return d.toLowerCase().includes(query) || ko.includes(query);
+  }).slice(0, 8);
+
+  if (!matches.length) { dd.classList.remove('open'); return; }
+  dd.innerHTML = matches.map(d =>
+    `<div class="drug-option" onmousedown="addDrug('${type}','${d}')">
+      <span class="dopt-en">${d}</span><span class="dopt-ko">${DRUG_KO[d] || ''}</span>
+    </div>`
+  ).join('');
+  dd.classList.add('open');
+}
+function closeDropdown(type) {
+  setTimeout(() => document.getElementById('dd-' + type).classList.remove('open'), 150);
+}
+function addDrug(type, drug) {
+  const set = type === 'tried' ? triedDrugs : failedDrugs;
+  // If adding to failed, remove from tried (and vice versa)
+  if (type === 'failed') triedDrugs.delete(drug);
+  if (type === 'tried')  failedDrugs.delete(drug);
+  set.add(drug);
+  document.getElementById('search-' + type).value = '';
+  document.getElementById('dd-' + type).classList.remove('open');
+  renderChips();
+  // Also refresh opposite chips
+  renderChips();
+}
+function removeDrug(type, drug) {
+  (type === 'tried' ? triedDrugs : failedDrugs).delete(drug);
+  renderChips();
+}
+function renderChips() {
+  ['tried','failed'].forEach(type => {
+    const set = type === 'tried' ? triedDrugs : failedDrugs;
+    const container = document.getElementById('chips-' + type);
+    if (!set.size) {
+      container.innerHTML = `<span class="no-drug-hint" id="hint-${type}">아직 입력된 약물이 없습니다</span>`;
+      return;
+    }
+    container.innerHTML = [...set].map(d =>
+      `<div class="drug-chip chip-${type}">
+        ${d} <span style="font-size:10px;opacity:0.7">${DRUG_KO[d]||''}</span>
+        <span class="chip-remove" onclick="removeDrug('${type}','${d}')">✕</span>
+      </div>`
+    ).join('');
+  });
+}
+
+/* ════════════════════════════════════════
+   RESULTS
+════════════════════════════════════════ */
 function showResults() {
   const base = ASM[selSz];
   let g1 = [...base.g1], g2 = [...base.g2], g3 = [...base.g3];
-  const avoidSet = new Set(), preferSet = new Set(), notes = [];
+
+  const avoidSet = new Set([...failedDrugs]);
+  const preferSet = new Set();
+  const notes = [];
 
   selMods.forEach(mod => {
     const r = RULES[mod]; if (!r) return;
@@ -729,14 +753,12 @@ function showResults() {
     if (r.note) notes.push(r.note);
   });
 
-  // Demote avoided drugs one tier
+  // Tier adjustment
   const newG1 = g1.filter(d => !avoidSet.has(d));
   const demG1 = g1.filter(d =>  avoidSet.has(d));
   const newG2 = [...g2.filter(d => !avoidSet.has(d)), ...demG1];
   const demG2 = g2.filter(d =>  avoidSet.has(d));
   const newG3 = [...g3.filter(d => !avoidSet.has(d)), ...demG2];
-
-  // Promote preferred drugs from g2 → g1
   const finalG1 = [...newG1];
   const finalG2 = [];
   newG2.forEach(d => {
@@ -744,18 +766,32 @@ function showResults() {
     else finalG2.push(d);
   });
 
+  // Render change panel
   drawGroup('g1-tags', finalG1, g1, avoidSet, preferSet);
   drawGroup('g2-tags', finalG2, g2, avoidSet, preferSet);
   drawGroup('g3-tags', newG3,   g3, avoidSet, preferSet);
 
+  // Change panel note
+  const failedList = [...failedDrugs];
+  document.getElementById('change-note').innerHTML = failedList.length
+    ? `<strong>❌ 제외된 약물:</strong> ${failedList.map(d=>`${d} (${DRUG_KO[d]||''})` ).join(', ')}<br>효과 없었거나 중단한 약물은 추천 목록에서 제외되었습니다.`
+    : `현재 복용 중인 약을 다른 약으로 교체할 때의 추천입니다. 교체 시에는 점진적인 감량·증량을 권고합니다.`;
+
+  // Add-on panel
+  renderAddon(avoidSet);
+
   // Summary
   const bar = document.getElementById('summary-bar');
-  bar.innerHTML = '<strong style="font-size:12px;color:var(--text-muted)">선택된 조건</strong>';
-  [[SZ_NAMES[selSz]], ...[...selMods].map(m => MOD_NAMES[m] || m)].flat().forEach(lbl => {
+  bar.innerHTML = '<strong style="font-size:11.5px;color:var(--text-muted)">선택된 조건</strong>';
+  const addTag = (lbl, cls='') => {
     const t = document.createElement('span');
-    t.className = 'summary-tag'; t.textContent = lbl;
-    bar.appendChild(t);
-  });
+    t.className = 'summary-tag' + (cls ? ' ' + cls : '');
+    t.textContent = lbl; bar.appendChild(t);
+  };
+  addTag(SZ_NAMES[selSz]);
+  selMods.forEach(m => addTag(MOD_NAMES[m] || m));
+  if (triedDrugs.size)  addTag('사용해 본 약 ' + triedDrugs.size + '개');
+  if (failedDrugs.size) addTag('실패한 약 ' + failedDrugs.size + '개', 'failed-tag');
 
   // Notes
   const ns = document.getElementById('mod-notes');
@@ -763,43 +799,106 @@ function showResults() {
     ns.style.display = 'block';
     document.getElementById('notes-list').innerHTML =
       notes.map(n => `<div class="mod-note-item"><span class="dot"></span><span>${n}</span></div>`).join('');
-  } else {
-    ns.style.display = 'none';
-  }
+  } else ns.style.display = 'none';
 
   document.getElementById('result-desc').textContent =
-    `${SZ_NAMES[selSz]} · 수정인자 ${selMods.size}개 적용`;
+    `${SZ_NAMES[selSz]} · 수정인자 ${selMods.size}개 · 치료력 ${triedDrugs.size + failedDrugs.size}개 반영`;
 
-  showPage(3);
+  showPage(4);
+}
+
+function renderAddon(avoidSet) {
+  const container = document.getElementById('addon-combos');
+  container.innerHTML = '';
+
+  // Get current drugs (tried = currently on)
+  const currentDrugs = [...triedDrugs];
+  const pairs = ADDON_PAIRS[selSz] || ADDON_PAIRS['focal']; // fallback
+
+  // Filter pairs: base must be in currentDrugs (or 'any'), addon not in avoidSet
+  let ranked = pairs
+    .filter(([base, addon]) => {
+      if (avoidSet.has(addon)) return false;
+      if (base === 'any') return true;
+      return currentDrugs.includes(base);
+    })
+    .sort((a, b) => a[2] - b[2]);
+
+  // Deduplicate addon drugs, keep highest ranked
+  const seen = new Set();
+  ranked = ranked.filter(([,addon]) => {
+    if (seen.has(addon)) return false;
+    seen.add(addon); return true;
+  });
+
+  // Group by rank
+  const byRank = {1:[], 2:[], 3:[]};
+  ranked.forEach(([base, addon, rank]) => { (byRank[rank] || byRank[3]).push({base, addon}); });
+
+  const rankLabels = { 1:'근거 충분 (Recommended)', 2:'근거 보통 (Consider)', 3:'근거 제한 (Use with caution)' };
+  const rankClass  = { 1:'addon-rank-1', 2:'addon-rank-2', 3:'addon-rank-3' };
+
+  let anyShown = false;
+  [1,2,3].forEach(r => {
+    if (!byRank[r].length) return;
+    anyShown = true;
+    const block = document.createElement('div');
+    block.className = 'addon-combo';
+    block.innerHTML = `<div class="addon-combo-title">
+      <span class="addon-rank ${rankClass[r]}">${rankLabels[r]}</span>
+    </div><div class="addon-drugs" id="addon-rank-${r}"></div>`;
+    container.appendChild(block);
+    const drugWrap = block.querySelector('.addon-drugs');
+    byRank[r].forEach(({base, addon}) => {
+      const tag = document.createElement('div');
+      tag.className = 'addon-tag';
+      tag.innerHTML = `${addon}<span class="drug-ko">${DRUG_KO[addon]||''}</span>`;
+      if (base !== 'any') tag.title = `${base}와 병용 근거 있음`;
+      drugWrap.appendChild(tag);
+    });
+  });
+
+  const noteEl = document.getElementById('addon-note');
+  if (!anyShown) {
+    container.innerHTML = '<div style="font-size:13px;color:var(--text-muted);padding:12px 0;">현재 복용 약물 정보를 3단계에서 입력하시면 더 구체적인 병용 추천이 제공됩니다.</div>';
+    noteEl.innerHTML = '현재 복용 중인 약물에 추가할 수 있는 약물입니다. 병용 시 약물 상호작용을 반드시 확인하세요.';
+  } else {
+    noteEl.innerHTML = currentDrugs.length
+      ? `현재 복용 중: <strong>${currentDrugs.join(', ')}</strong> — 아래 약물을 병용 추가로 고려할 수 있습니다.`
+      : '현재 복용 중인 약물 없이 병용 추천을 표시합니다. 3단계에서 약물을 입력하면 더 맞춤화됩니다.';
+  }
 }
 
 function drawGroup(id, drugs, originals, avoidSet, preferSet) {
   const c = document.getElementById(id);
   c.innerHTML = '';
   if (!drugs.length) {
-    c.innerHTML = '<span style="font-size:12px;color:var(--text-muted)">해당 없음</span>';
-    return;
+    c.innerHTML = '<span style="font-size:12px;color:var(--text-muted)">해당 없음</span>'; return;
   }
   drugs.forEach(key => {
     const wrap = document.createElement('div');
     wrap.className = 'asm-tag';
+    if (failedDrugs.has(key)) wrap.classList.add('excluded');
 
-    const en = document.createElement('span');
-    en.textContent = key;
-    wrap.appendChild(en);
-
+    const en = document.createElement('span'); en.textContent = key; wrap.appendChild(en);
     const ko = DRUG_KO[key];
     if (ko && ko !== key) {
-      const ks = document.createElement('span');
-      ks.className = 'drug-ko';
-      ks.textContent = ko;
-      wrap.appendChild(ks);
+      const ks = document.createElement('span'); ks.className = 'drug-ko'; ks.textContent = ko; wrap.appendChild(ks);
     }
-
     if (preferSet.has(key) && !originals.includes(key)) { wrap.classList.add('up');   wrap.title = '수정인자로 우선도 상승'; }
-    if (avoidSet.has(key))                               { wrap.classList.add('down'); wrap.title = '수정인자로 우선도 하향'; }
-
+    if (avoidSet.has(key))                               { wrap.classList.add('down'); wrap.title = '실패/수정인자로 우선도 하향'; }
     c.appendChild(wrap);
+  });
+}
+
+/* ════════════════════════════════════════
+   STRATEGY TOGGLE
+════════════════════════════════════════ */
+function showStrategy(type) {
+  curStrategy = type;
+  ['change','addon'].forEach(t => {
+    document.getElementById('btn-' + t).classList.toggle('active', t === type);
+    document.getElementById('panel-' + t).classList.toggle('active', t === type);
   });
 }
 </script>
